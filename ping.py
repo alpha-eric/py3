@@ -22,7 +22,7 @@ def connect_to(host_or_ip, port):
     except socket.error as e:
         print('Network failure:', repr(e))
     else:
-        print('Success: host', info[3], 'is listening on port ', port)
+        print('Success: host', info[4][0], 'is listening on port', info[4][1])
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Try connecting to host')
