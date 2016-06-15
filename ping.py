@@ -5,6 +5,7 @@ import argparse
 
 def connect_to(host_or_ip, port):
     try:
+        #getaddrinfo(addr, port, family, type, proto)
         infolist = socket.getaddrinfo(host_or_ip, port,
                 0, socket.SOCK_STREAM, 0,
                 socket.AI_ADDRCONFIG | socket.AI_V4MAPPED | socket.AI_CANONNAME)
