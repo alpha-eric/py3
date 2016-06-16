@@ -7,8 +7,13 @@ openssl req -new -key private.key -out CSR.csr
 3) Check infos are correct in csr file
 openssl req -text -in CSR.csr -noout
 
-4) 
+4) Create self sign
 openssl x509 -req -days 365 -in CSR.csr -signkey private.key -out self-signed.crt
 
-5) Check Certificate is correct
+5) Check sign is correct
 openssl x509 -text -in self-signed.crt -noout
+
+6) Create PEM for server
+openssl x509 -text -in self-signed.crt -noout > server.pem
+cat self-signed.crt >> server.pem
+cat private.key >> server.pem
