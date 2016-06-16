@@ -1,19 +1,17 @@
-1) Create private key
-openssl genrsa -aes256 -out private.key 2048
+# Create private key
+openssl genrsa -out www.key 4096
 
-2) Create Creating Certificate Signing Requests (CSR) based on private key
-openssl req -new -key private.key -out CSR.csr
+# Create Creating Certificate Signing Requests (CSR) based on private key
+openssl req -new -key www.key -out www.csr
 
-3) Check infos are correct in csr file
-openssl req -text -in CSR.csr -noout
+# Check infos are correct in csr file
+openssl req -text -in www.csr -noout
 
-4) Create self sign
-openssl x509 -req -days 365 -in CSR.csr -signkey private.key -out self-signed.crt
+# Create self sign
+openssl x509 -req -days 365 -in www.csr -signkey www.key -out www.crt
 
-5) Check sign is correct
-openssl x509 -text -in self-signed.crt -noout
+# Check sign is correct
+openssl x509 -text -in www.crt -noout
 
-6) Create PEM for server
-openssl x509 -text -in self-signed.crt -noout > server.pem
-cat self-signed.crt >> server.pem
-cat private.key >> server.pem
+# Create PEM for server
+cat www.crt www.key >> www.pem
