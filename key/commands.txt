@@ -1,0 +1,14 @@
+1) Create private key
+openssl genrsa -aes256 -out private.key 2048
+
+2) Create Creating Certificate Signing Requests (CSR) based on private key
+openssl req -new -key private.key -out CSR.csr
+
+3) Check infos are correct in csr file
+openssl req -text -in CSR.csr -noout
+
+4) 
+openssl x509 -req -days 365 -in CSR.csr -signkey private.key -out self-signed.crt
+
+5) Check Certificate is correct
+openssl x509 -text -in self-signed.crt -noout
