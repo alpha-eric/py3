@@ -7,7 +7,7 @@ openssl req -new -key www.key -out www.csr
 # Check infos are correct in csr file
 openssl req -text -in www.csr -noout
 
-# Create self sign
+# Create self sign(Usually, www.key is another key from CA)
 openssl x509 -req -days 365 -in www.csr -signkey www.key -out www.crt
 
 # Check sign is correct
